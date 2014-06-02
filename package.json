@@ -1,0 +1,41 @@
+{
+  "name": "api-query-parser",
+  "version": "0.1.0",
+  "description": "Helper module to parse api queries",
+  "main": "./index.coffee",
+  "directories": {
+    "test": "./test",
+    "lib": "./lib"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Marc Bachmann",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "grunt-mocha-test": "^0.10.2",
+    "grunt": "^0.4.4",
+    "mocha": "^1.18.2",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "dependencies": {
+    "coffee-script": "^1.7.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/marcbachmann/api-query-parser.git"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "parse",
+    "parser",
+    "query",
+    "querystring"
+  ],
+  "bugs": {
+    "url": "https://github.com/marcbachmann/api-query-parser/issues"
+  },
+  "homepage": "https://github.com/marcbachmann/api-query-parser"
+}
