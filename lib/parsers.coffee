@@ -13,20 +13,30 @@ sort = (string, defaultSort) ->
   result
 
 
-csv = (string, defaultFields=[], allowedFields) ->
+csv = (string, opt={}) ->
+  opt.default ||= []
   string = String(string) if typeof string is 'number'
-  return defaultFields unless typeof string is 'string'
-  fields = _.intersection(allowedFields, string.split(','))
+  return opt.default unless typeof string is 'string'
+  if opt.allowed?.length
+    fields = _.intersection(opt.allowed, string.split(','))
+  else
+    fields = string.split(',')
   return fields if fields?.length
-  return defaultFields
+  return opt.default
 
 
-integer = (string, defaultValue=0, maximum) ->
-  Math.min(parseInt(string) || defaultValue, parseInt(maximum) || Infinity)
+integer = (number, opt={}) ->
+  opt.default = 0 if opt.default == undefined || opt.default == null
+  return opt.default unless number = parseInt(number)
+  number = Math.min(number, opt.max) if opt.max != undefined
+  number = Math.max(number, opt.min) if opt.min != undefined
+  number
 
 
-positiveInteger = (string, defaultValue=0, maximum) ->
-  Math.abs(integer(string, defaultValue, maximum))
+positiveInteger = (string, opt={}) ->
+  int = integer(string, o)
+  return int if int >= 0
+  opt.default || 0
 
 
 date = (string) ->
@@ -49,12 +59,15 @@ dateRange = (string, formatter=date) ->
   }
 
 
-pagination = ({page, offset, limit, defaultLimit, maxLimit}={}) ->
-  limit = positiveInteger(limit, defaultLimit || 50, maxLimit)
-  if page
-    offset = (positiveInteger(page, 1) - 1) * limit
+pagination = (opt={}) ->
+  limit = positiveInteger opt.limit,
+    default: opt.default || 50
+    max: opt.max
+
+  if opt.page
+    offset = (positiveInteger(opt.page, default: 1) - 1) * limit
   else
-    offset = positiveInteger(offset, 0)
+    offset = positiveInteger(opt.offset, default: 0)
 
   {
     offset: offset
