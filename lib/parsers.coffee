@@ -1,4 +1,7 @@
-_ = require('lodash')
+intersection = (a, b) ->
+  [a, b] = [b, a] if a.length > b.length
+  value for value in a when value in b
+
 
 sort = (string, defaultSort) ->
   string = defaultSort if typeof string != 'string' || !string.length
@@ -18,7 +21,7 @@ csv = (string, opt={}) ->
   string = String(string) if typeof string is 'number'
   return opt.default unless typeof string is 'string'
   if opt.allowed?.length
-    fields = _.intersection(opt.allowed, string.split(','))
+    fields = intersection(opt.allowed, string.split(','))
   else
     fields = string.split(',')
   return fields if fields?.length
