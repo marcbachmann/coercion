@@ -34,7 +34,7 @@ integer = (number, opt={}) ->
 
 
 positiveInteger = (string, opt={}) ->
-  int = integer(string, o)
+  int = integer(string, opt)
   return int if int >= 0
   opt.default || 0
 
