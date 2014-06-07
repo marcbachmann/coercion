@@ -5,6 +5,7 @@ module.exports =
   sort: parsers.sort
   csv: parsers.csv
   fields: parsers.csv
+  integer: parsers.integer
   positiveInteger: parsers.positiveInteger
   date: parsers.date
   dateRange: parsers.dateRange
