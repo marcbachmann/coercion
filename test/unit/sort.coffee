@@ -1,8 +1,4 @@
-chai = require('chai')
-chai.should()
-expect = chai.expect
-
-sort = require('../').sort
+sort = require('../../').sort
 
 describe 'sort()', ->
   describe 'returns an object when', ->

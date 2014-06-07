@@ -6,10 +6,10 @@ module.exports = (grunt) ->
         options:
           ui: 'bdd'
           reporter: 'spec'
-          require: ['coffee-script']
+          require: ['coffee-script', './test/support/globals.js']
           slow: '1ms'
 
-        src: ['test/**/*.coffee']
+        src: ['test/unit/**/*.coffee']
 
     watch:
       tests:

@@ -1,8 +1,4 @@
-chai = require('chai')
-chai.should()
-expect = chai.expect
-
-dateRange = require('../').dateRange
+dateRange = require('../../').dateRange
 
 describe 'dateRange()', ->
 
