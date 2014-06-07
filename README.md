@@ -27,7 +27,7 @@
 
 ### csv
 
-    parse.csv('allowed,created,title,notallowed', ['allowed', 'created', 'title'])
+    parse.csv('allowed,created,title,notallowed', {allowed: ['allowed', 'created', 'title']})
 
     [ 'allowed', 'created', 'title' ]
 
@@ -41,13 +41,13 @@ Always returns a number. Default value is 0
 	0
 
 	// Use a default value
-	parse.integer('foo', 10)
+	parse.integer('foo', {default: 10})
 
 	10
 
 
 	// Use a maxium value
-	parse.integer(1000, 10, 100)
+	parse.integer(1000, {default: 10, max: 100})
 
 	100
 
@@ -56,7 +56,7 @@ Always returns a number. Default value is 0
 Always returns a number. Default value is 0
 
 	// parse.positiveInteger(number as string or int, default, max value)
-	parse.positiveInteger(req.query.limit, 10, 100)
+	parse.positiveInteger(req.query.limit, {default: 10, max: 100})
 
 	100
 
@@ -110,6 +110,25 @@ Always returns an Object. Default limit is 50
 
 
 ## middlewares
+    parse.middlewares.all(config)
+
+    -> returns function(req, res, next) {
+
+      // which populates req.options
+      req.options = req.options || {}
+
+      // And pagination, sort & fields on req.options
+      req.options.pagination = {
+        offset: 0
+        limit: 50
+      }
+      req.options.sort = {
+        title: 'asc'
+      }
+
+      req.options.fields = ['title', 'name']
+    }
+
 ### sort
 ### fields
 ### pagination
