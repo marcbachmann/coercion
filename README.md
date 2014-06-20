@@ -35,15 +35,15 @@
 ### boolean
 Always returns a boolean. Default value is false
 
-  // returns true for true, 'true', 1, '1', 'yes'
-  parse.integer('1')
+    // returns true for true, 'true', 1, '1', 'yes'
+    parse.boolean('1')
 
-  true
+    > true
 
 
-  parse.integer('0')
+    parse.boolean('0')
 
-  false
+    > false
 
 
 ### integer
@@ -52,18 +52,18 @@ Always returns a number. Default value is 0
 	// always returns a number
 	parse.integer('foo')
 	
-	0
+	> 0
 
 	// Use a default value
 	parse.integer('foo', {default: 10})
 
-	10
+	> 10
 
 
 	// Use a maxium value
 	parse.integer(1000, {default: 10, max: 100})
 
-	100
+	> 100
 
 
 ### positiveInteger
@@ -72,7 +72,7 @@ Always returns a number. Default value is 0
 	// parse.positiveInteger(number as string or int, default, max value)
 	parse.positiveInteger(req.query.limit, {default: 10, max: 100})
 
-	100
+	> 100
 
 
 ### date

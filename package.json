@@ -1,6 +1,6 @@
 {
   "name": "api-query-parser",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Helper module to parse api queries",
   "main": "./index.coffee",
   "directories": {
