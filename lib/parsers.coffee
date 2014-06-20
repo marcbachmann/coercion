@@ -28,6 +28,11 @@ csv = (string, opt={}) ->
   return opt.default
 
 
+boolean = (value) ->
+  return true if value in [true, 'true', 1, '1', 'yes']
+  false
+
+
 integer = (number, opt={}) ->
   opt.default = 0 if opt.default == undefined || opt.default == null
   return opt.default unless number = parseInt(number)
@@ -81,6 +86,7 @@ pagination = (opt={}) ->
 module.exports =
   sort: sort
   csv: csv
+  boolean: boolean
   integer: integer
   positiveInteger: positiveInteger
   date: date

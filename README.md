@@ -32,6 +32,20 @@
     [ 'allowed', 'created', 'title' ]
 
 
+### boolean
+Always returns a boolean. Default value is false
+
+  // returns true for true, 'true', 1, '1', 'yes'
+  parse.integer('1')
+
+  true
+
+
+  parse.integer('0')
+
+  false
+
+
 ### integer
 Always returns a number. Default value is 0
 
@@ -64,19 +78,16 @@ Always returns a number. Default value is 0
 ### date
 Always returns a date. Undefined if parsing failed.
 
-    parse.dateRange("2014-01-01-2014-06-01")
-    
-    {
-      from: Wed Jan 01 2014 01:00:00 GMT+0100 (CET),
-      to: Sun Jun 01 2014 02:00:00 GMT+0200 (CEST)
-    }
+    parse.date("2014-01-01")
+
+    Wed Jan 01 2014 01:00:00 GMT+0100 (CET)
 
 
 ### dateRange
 Always returns an Object.
 
     parse.dateRange("2014-01-01-2014-06-01")
-    
+
     {
       from: Wed Jan 01 2014 01:00:00 GMT+0100 (CET),
       to: Sun Jun 01 2014 02:00:00 GMT+0200 (CEST)

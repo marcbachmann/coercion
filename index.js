@@ -8,6 +8,7 @@ module.exports = {
   sort: parsers.sort,
   csv: parsers.csv,
   fields: parsers.csv,
+  boolean: parsers.boolean,
   integer: parsers.integer,
   positiveInteger: parsers.positiveInteger,
   date: parsers.date,
