@@ -61,9 +61,9 @@ describe 'sort()', ->
   describe 'sets a default property when', ->
 
     it 'called with invalid string', ->
-      expect(Object.keys(sort(null, 'created_at')).length).to.be.equal(1)
-      expect(Object.keys(sort([], 'created_at')).length).to.be.equal(1)
-      expect(Object.keys(sort({}, 'created_at')).length).to.be.equal(1)
+      expect(Object.keys(sort(null, default: 'created_at')).length).to.be.equal(1)
+      expect(Object.keys(sort([], default: 'created_at')).length).to.be.equal(1)
+      expect(Object.keys(sort({}, default: 'created_at')).length).to.be.equal(1)
 
 
   describe 'returns correct values when', ->
@@ -75,10 +75,10 @@ describe 'sort()', ->
       expect(sort('-created_at').created_at).to.be.equal('desc')
 
     it 'called with ascending default option', ->
-      expect(sort(null, 'created_at').created_at).to.be.equal('asc')
+      expect(sort(null, default:'created_at').created_at).to.be.equal('asc')
 
     it 'called with descending default option', ->
-      expect(sort(null, '-created_at').created_at).to.be.equal('desc')
+      expect(sort(null, default: '-created_at').created_at).to.be.equal('desc')
 
     it 'called with multiple sort options', ->
       keys = sort('-created_at,firstname,-lastname')
@@ -87,19 +87,60 @@ describe 'sort()', ->
       expect(keys.lastname).to.be.equal('desc')
 
     it 'called with multiple default sort options', ->
-      keys = sort(null, '-created_at,firstname,-lastname')
+      keys = sort(null, default: '-created_at,firstname,-lastname')
       expect(keys.created_at).to.be.equal('desc')
       expect(keys.firstname).to.be.equal('asc')
       expect(keys.lastname).to.be.equal('desc')
 
     it 'called with empty string', ->
-      keys = sort('', 'created_at,-firstname,foo')
+      keys = sort('', default: 'created_at,-firstname,foo')
       expect(keys.created_at).to.be.equal('asc')
       expect(keys.firstname).to.be.equal('desc')
       expect(keys.foo).to.be.equal('asc')
 
     it 'default options differs from string', ->
-      keys = sort('-created_at,firstname,-lastname', 'created_at,firstname,foo')
+      keys = sort('-created_at,firstname,-lastname', default: 'created_at,firstname,foo')
+      expect(keys.created_at).to.be.equal('desc')
+      expect(keys.firstname).to.be.equal('asc')
+      expect(keys.lastname).to.be.equal('desc')
+      expect(keys.foo).to.be.undefined
+
+
+  describe 'can restrict keys', ->
+
+    it 'but allowes everything by default', ->
+      expect(sort('created_at').created_at).to.be.equal('asc')
+
+    it 'by using an array', ->
+      expect(sort('created_at', allowed: ['id']).created_at).to.be.undefined
+      expect(sort('id', allowed: ['id']).id).to.be.equal('asc')
+
+    it 'called with ascending default option', ->
+      expect(sort(null, default:'created_at').created_at).to.be.equal('asc')
+
+    it 'called with descending default option', ->
+      expect(sort(null, default: '-created_at').created_at).to.be.equal('desc')
+
+    it 'called with multiple sort options', ->
+      keys = sort('-created_at,firstname,-lastname')
+      expect(keys.created_at).to.be.equal('desc')
+      expect(keys.firstname).to.be.equal('asc')
+      expect(keys.lastname).to.be.equal('desc')
+
+    it 'called with multiple default sort options', ->
+      keys = sort(null, default: '-created_at,firstname,-lastname')
+      expect(keys.created_at).to.be.equal('desc')
+      expect(keys.firstname).to.be.equal('asc')
+      expect(keys.lastname).to.be.equal('desc')
+
+    it 'called with empty string', ->
+      keys = sort('', default: 'created_at,-firstname,foo')
+      expect(keys.created_at).to.be.equal('asc')
+      expect(keys.firstname).to.be.equal('desc')
+      expect(keys.foo).to.be.equal('asc')
+
+    it 'default options differs from string', ->
+      keys = sort('-created_at,firstname,-lastname', default: 'created_at,firstname,foo')
       expect(keys.created_at).to.be.equal('desc')
       expect(keys.firstname).to.be.equal('asc')
       expect(keys.lastname).to.be.equal('desc')
