@@ -5,7 +5,7 @@ exports.all = ({sort, pagination, fields}={}) ->
     q = req.query
     req.options ||= {}
     if sort
-      req.options.sort = parse.sort(q.sort)
+      req.options.sort = parse.sort(q.sort, sort)
       delete q.sort
 
     if pagination
@@ -24,7 +24,7 @@ exports.all = ({sort, pagination, fields}={}) ->
       delete q.limit
 
     if fields
-      req.options.fields = parse.csv(q.fields, {default: fields.default, allowed: fields.items})
+      req.options.fields = parse.csv(q.fields, fields)
       delete q.fields
 
     next()
