@@ -10,6 +10,7 @@ describe 'csv()', ->
 
   it 'only works with strings and numbers', ->
     for value in [null, undefined, ['foo'], {}, {foo: 'bar'}]
+      expect(csv(value).length).to.be.equal(0)
       expect(csv(value)[0]).to.be.undefined
 
     for value in ['foo', 123]

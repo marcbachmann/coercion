@@ -3,14 +3,15 @@ intersection = (a, b) ->
   value for value in a when value in b
 
 
-sort = (string, defaultSort) ->
-  string = defaultSort if typeof string != 'string' || !string.length
+sort = (string, opt={}) ->
+  string = opt.default if typeof string != 'string' || !string.length
   return {} unless string?.length
 
   result = {}
   for s in string.split(',')
     [s, op, key] = s.trim().match(/^([-]?)(.*)/)
-    if key
+    isValid = if opt.allowed then key in opt.allowed else true
+    if key && isValid
       result[key] = if op == '-' then 'desc' else 'asc'
 
   result
