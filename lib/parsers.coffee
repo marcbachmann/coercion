@@ -4,6 +4,9 @@ intersection = (a, b) ->
 
 
 sort = (string, opt={}) ->
+  opt.ascValue = if opt.ascValue? then opt.ascValue else 'asc'
+  opt.descValue = if opt.descValue? then opt.descValue else 'desc'
+
   string = opt.default if typeof string != 'string' || !string.length
   return {} unless string?.length
 
@@ -12,7 +15,7 @@ sort = (string, opt={}) ->
     [s, op, key] = s.trim().match(/^([-]?)(.*)/)
     isValid = if opt.allowed then key in opt.allowed else true
     if key && isValid
-      result[key] = if op == '-' then 'desc' else 'asc'
+      result[key] = if op == '-' then opt.descValue else opt.ascValue
 
   result
 
