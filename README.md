@@ -1,10 +1,9 @@
-# api-query-parser
-## Node module with query helpers to write a REST API
+# Coercion
+## A node.js module for type coercion.
 
 # Usage
     
-    parse = require('api-query-parser') 
-
+    parse = require('coercion')
     parse.dateRange("2014-01-01-2014-06-01")
     
     {

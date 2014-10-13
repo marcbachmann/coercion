@@ -1,7 +1,7 @@
 {
-  "name": "api-query-parser",
-  "version": "0.4.0",
-  "description": "Helper module to parse api queries",
+  "name": "coercion",
+  "version": "0.5.0",
+  "description": "Helper module to parse/cast/coerce strings.",
   "main": "./index.coffee",
   "directories": {
     "test": "./test",
@@ -11,7 +11,7 @@
     "test": "grunt test"
   },
   "author": "Marc Bachmann",
-  "license": "MIT",
+  "license": "LGPL",
   "devDependencies": {
     "coffee-script": "^1.7.1",
     "chai": "^1.9.1",
@@ -23,19 +23,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/marcbachmann/api-query-parser.git"
+    "url": "git://github.com/marcbachmann/coercion.git"
   },
   "keywords": [
-    "api",
-    "rest",
     "parse",
     "parser",
+    "coerce",
+    "coercion",
     "coersion",
+    "cast",
+    "casting",
     "query",
-    "querystring"
+    "querystring",
+    "helper",
+    "api",
+    "rest"
   ],
   "bugs": {
-    "url": "https://github.com/marcbachmann/api-query-parser/issues"
+    "url": "https://github.com/marcbachmann/coercion/issues"
   },
-  "homepage": "https://github.com/marcbachmann/api-query-parser"
+  "homepage": "https://github.com/marcbachmann/coercion"
 }
