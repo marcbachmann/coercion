@@ -5,7 +5,7 @@ describe 'integer()', ->
   it 'returns a number', ->
     values = [null, undefined, 123, 'foo', {}, []]
     for value in values
-      expect(integer(value)).to.be.a('number')
+      expect(integer(value), "integer('#{value}')").to.be.a('number')
 
   it 'allows a default value', ->
     defaults = [100, -100, [], ->]

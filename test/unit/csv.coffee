@@ -35,3 +35,13 @@ describe 'csv()', ->
 
     result = csv('notAllowed', default: ['foo'], allowed: ['foo', 'foo.bar'])
     expect(result[0]).to.be.equal('foo')
+
+
+  it 'Accepts wildcards in allowed array', ->
+    result = csv('foo.bar', allowed: ['foo', 'foo.*'])
+    expect(result).to.deep.equal(['foo.bar'])
+
+
+  it 'Accepts multiple wildcards in allowed array', ->
+    result = csv('foo.bar,bla.test,bla.*,bla', allowed: ['foo', 'foo.*', 'bla.*'])
+    expect(result).to.deep.equal(['foo.bar', 'bla.test', 'bla.*'])
