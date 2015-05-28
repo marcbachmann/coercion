@@ -21,15 +21,28 @@ sort = (string, opt={}) ->
 
 
 csv = (string, opt={}) ->
-  opt.default ||= []
-  string = String(string) if typeof string is 'number'
-  return opt.default unless typeof string is 'string'
+  string = string.toString() if typeof string is 'number'
+  return opt.default || [] unless typeof string is 'string'
   if opt.allowed?.length
-    fields = intersection(opt.allowed, string.split(','))
+    all = string.split(',')
+    allowed = opt.allowed.reduce (res, field) ->
+      if prefix = field.match(/(.*\.)\*$/)
+        res.wildcards.push(prefix[1])
+      else
+        res.fields.push(field)
+
+      res
+    , {fields: [], wildcards: []}
+
+    fields = intersection(allowed.fields, all)
+    for wildcard in allowed.wildcards
+      fields = fields.concat(all.filter (val) -> val.indexOf(wildcard) == 0)
+
   else
     fields = string.split(',')
+
   return fields if fields?.length
-  return opt.default
+  return opt.default || []
 
 
 boolean = (value) ->
