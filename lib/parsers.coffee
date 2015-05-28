@@ -51,10 +51,9 @@ boolean = (value) ->
 
 
 integer = (number, opt={}) ->
-  opt.default = 0 if opt.default == undefined || opt.default == null
-  return opt.default unless number = parseInt(number)
-  number = Math.min(number, opt.max) if opt.max != undefined
-  number = Math.max(number, opt.min) if opt.min != undefined
+  return opt.default || 0 unless number = Math.round(number)
+  number = Math.min(number, opt.max) if opt.max?
+  number = Math.max(number, opt.min) if opt.min?
   number
 
 
@@ -73,7 +72,7 @@ date = (string) ->
 dateRegex = "([0-9\.]{11,13}|[0-9]{4}-[0-9]{2}-[0-9a-zA-Z:\.]*)"
 dateRangeRegex = "#{dateRegex}?-?#{dateRegex}?"
 dateRange = (string, formatter=date) ->
-  string = String(string) if typeof string is 'number'
+  string = string.toString() if typeof string is 'number'
   if typeof string is 'string' && string = string?.match(new RegExp(dateRangeRegex))
     date1 = formatter(string[1])
     date2 = formatter(string[2])
