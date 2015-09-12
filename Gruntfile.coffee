@@ -35,14 +35,14 @@ module.exports = (grunt) ->
     watch:
       tests:
         files: ['test/**/*.coffee', 'lib/**/*.coffee']
-        tasks: ['runTest']
+        tasks: ['test']
 
 
   grunt.loadNpmTasks('grunt-mocha-test')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-watch')
 
-  grunt.registerTask('runTest', ['default', 'mochaTest'])
-  grunt.registerTask('test', ['runTest', 'watch'])
+  grunt.registerTask('test', ['default', 'mochaTest'])
+  grunt.registerTask('test:watch', ['test', 'watch'])
   grunt.registerTask('default', ['coffee'])
 
