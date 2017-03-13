@@ -1,6 +1,8 @@
 # Coercion
 ## A node.js module for type coercion.
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/marcbachmann/coercion.svg)](https://greenkeeper.io/)
+
 # Usage
     
     parse = require('coercion')
