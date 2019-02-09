@@ -2,7 +2,7 @@
   "name": "coercion",
   "version": "0.6.0",
   "description": "Helper module to parse/cast/coerce strings.",
-  "main": "./index.coffee",
+  "main": "./index.js",
   "directories": {
     "test": "./test",
     "lib": "./lib"
