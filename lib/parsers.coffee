@@ -14,7 +14,19 @@ sort = (string, opt={}) ->
   for s in string.split(',')
     [s, op, key] = s.trim().match(/^([-]?)(.*)/)
     isValid = if opt.allowed then key in opt.allowed else true
-    if key && isValid
+
+    # check if opt.allowed has .* declarations and compare them against the key
+    isValidAsterisk = if opt.allowed then opt.allowed.reduce((acc, st) ->
+      val = if st.slice(st.length-2) == '.*'
+        st.slice(0, -2)
+      else st
+
+      if key.indexOf(val) == 0
+        return acc || true
+      acc
+    , false)
+
+    if key && (isValid || isValidAsterisk)
       result[key] = if op == '-' then opt.descValue else opt.ascValue
 
   result

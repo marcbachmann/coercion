@@ -115,3 +115,7 @@ describe 'sort()', ->
       expect(sort('created_at', allowed: ['id']).created_at).to.be.undefined
       expect(sort('id', allowed: ['id']).id).to.be.equal('asc')
 
+    it 'but allows a subproperty by using an asterisk', ->
+      allowed = ['afield', 'first.*', 'anotherfield']
+      expect(sort('first.second', allowed: allowed)['first.second']).to.be.equal('asc')
+      expect(sort('first.second.third', allowed: allowed)['first.second.third']).to.be.equal('asc')
