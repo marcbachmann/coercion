@@ -1,23 +1,8 @@
+sort = require('./sort')
+
 intersection = (a, b) ->
   [a, b] = [b, a] if a.length > b.length
   value for value in a when value in b
-
-
-sort = (string, opt={}) ->
-  opt.ascValue = if opt.ascValue? then opt.ascValue else 'asc'
-  opt.descValue = if opt.descValue? then opt.descValue else 'desc'
-
-  string = opt.default if typeof string != 'string' || !string.length
-  return {} unless string?.length
-
-  result = {}
-  for s in string.split(',')
-    [s, op, key] = s.trim().match(/^([-]?)(.*)/)
-    isValid = if opt.allowed then key in opt.allowed else true
-    if key && isValid
-      result[key] = if op == '-' then opt.descValue else opt.ascValue
-
-  result
 
 
 csv = (string, opt={}) ->
