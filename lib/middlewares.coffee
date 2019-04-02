@@ -1,11 +1,14 @@
 parse = require('./parsers')
+parseSort = require('./sort')
 
-exports.all = ({sort, pagination, fields}={}) ->
+exports.all = ({sort: sortOpts, pagination, fields}={}) ->
+  sort = sortOpts && parseSort(sortOpts)
+
   (req, res, next) ->
     q = req.query
     req.options ||= {}
-    if sort
-      req.options.sort = parse.sort(q.sort, sort)
+    if sortOpts
+      req.options.sort = sort(q.sort)
       delete q.sort
 
     if pagination

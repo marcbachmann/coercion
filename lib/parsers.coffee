@@ -1,4 +1,4 @@
-sort = require('./sort')
+parseSort = require('./sort')
 
 intersection = (a, b) ->
   [a, b] = [b, a] if a.length > b.length
@@ -85,7 +85,7 @@ pagination = (opt={}) ->
 
 
 module.exports =
-  sort: sort
+  sort: (string, opts) -> parseSort(opts)(string)
   csv: csv
   boolean: boolean
   integer: integer
