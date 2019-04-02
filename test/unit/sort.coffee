@@ -112,7 +112,7 @@ describe 'sort()', ->
       expect(sort('created_at').created_at).to.be.equal('asc')
 
     it 'by using an array', ->
-      expect(sort('created_at', allowed: ['id']).created_at).to.be.undefined
+      expect(sort('created_at', {allowed: ['id']}).created_at).to.equal(undefined)
       expect(sort('id', allowed: ['id']).id).to.be.equal('asc')
 
     it 'but allows a subproperty by using an asterisk', ->
