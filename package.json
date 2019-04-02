@@ -13,13 +13,14 @@
   "author": "Marc Bachmann",
   "license": "LGPL",
   "devDependencies": {
-    "coffee-script": "^1.7.1",
     "chai": "^1.9.1",
-    "grunt-mocha-test": "^0.10.2",
+    "coffee-script": "^1.7.1",
     "grunt": "^0.4.4",
-    "mocha": "^1.18.2",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-coffee": "^0.10.1",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-coffee": "^0.10.1"
+    "grunt-mocha-test": "^0.10.2",
+    "mocha": "^1.18.2"
   },
   "repository": {
     "type": "git",
@@ -42,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/marcbachmann/coercion/issues"
   },
-  "homepage": "https://github.com/marcbachmann/coercion"
+  "homepage": "https://github.com/marcbachmann/coercion",
+  "release": {
+    "extends": "@livingdocs/semantic-release-presets/npm-github"
+  }
 }
