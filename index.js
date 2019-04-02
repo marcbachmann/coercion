@@ -1,8 +1,5 @@
-var middlewares, parsers;
-
-parsers = require('./lib/parsers');
-
-middlewares = require('./lib/middlewares');
+const parsers = require('./lib/parsers')
+const middlewares = require('./lib/middlewares')
 
 module.exports = {
   sort: parsers.sort,
@@ -15,4 +12,4 @@ module.exports = {
   dateRange: parsers.dateRange,
   pagination: parsers.pagination,
   middlewares: middlewares
-};
+}
